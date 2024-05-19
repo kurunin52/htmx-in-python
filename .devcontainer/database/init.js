@@ -1,3 +1,7 @@
-db.createCollection("your_collection_name")
-db.your_collection_name.insert({something:"data"})
+db.createCollection("todos")
+db.todos.insert({
+  id: 1, 
+  content:"data",
+  done: false
+})
 // insertMany

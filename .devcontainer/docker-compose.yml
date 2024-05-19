@@ -19,6 +19,10 @@ services:
     restart: always
     volumes:
       - ./database:/database
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: db_todo
       
   # DB参照GUIツール
   mongo-express:
