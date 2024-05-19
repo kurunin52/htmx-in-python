@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # APサーバの設定
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/workspace
+    command: sleep infinity
+    network_mode: service:mongo
+    
+  # DBサーバの設定
+  mongo:
+    build: 
+      context: .
+      dockerfile: ./database/Dockerfile
+    restart: always
+    volumes:
+      - ./database:/database
+      
+  # DB参照GUIツール
+  mongo-express:
+    image: mongo-express
+    restart: always
+    # このポート設定を変更するとアクセスできなくなる
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017
+    depends_on:
+      - mongo
