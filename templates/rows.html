@@ -1,0 +1,7 @@
+{% for todo in todos %}
+  <tr>
+    <td>{{ todo.id }}</td>
+    <td>{{ todo.content }}</td>
+    <input type="checkbox" disabled value="{{ todo.done }}" />
+  </tr>
+{% endfor %}

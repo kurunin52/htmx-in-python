@@ -19,7 +19,7 @@
           <sub-title>A Demo Contracts Application</sub-title>
         </h1>
       </header>
-      {% for message in get_flashed_message() %}
+      {% for message in get_flashed_messages() %}
         <div class="flash">{{ message }}</div>
       {% endfor %}
       {% block content %}{% endblock %}
