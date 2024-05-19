@@ -5,19 +5,14 @@
     ],
     "service": "app",
     "workspaceFolder": "/workspace",
-    // "initializeCommand": "ls", // 詳しくはこちらを参照(https://github.com/microsoft/vscode-remote-release/issues/9302)
     "features": {
         "ghcr.io/devcontainers/features/github-cli:1": {},
         "ghcr.io/devcontainers-contrib/features/mongodb-atlas-cli-homebrew:1": {}
     },
     "customizations": {
         "vscode": {
-            // devcontainer環境に入れたいvscode拡張、設定を入れる
             "extensions": [
                 "mhutchie.git-graph",
-                "donjayamanne.githistory",
-                "eamodio.gitlens",
-                "Gruntfuggly.todo-tree",
                 "PKief.material-icon-theme",
                 "mongodb.mongodb-vscode",
                 "ms-python.python",
@@ -34,7 +29,7 @@
         }
     },
     // Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "pip install --no-cache-dir -r ./requirements.txt",
+    "postCreateCommand": "pip install --no-cache-dir -r ./requirements.txt -r ./.devcontainer/requirements.txt",
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
     "forwardPorts": [
         27017
