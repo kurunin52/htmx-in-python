@@ -10,9 +10,13 @@
       <th>完了</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="todo_table">
     {% include 'rows.html' %}
   </tbody>
 </table>
+
+<div>
+  <button hx-get="/edit">Create new task</button>
+</div>
 
 {% endblock %}
