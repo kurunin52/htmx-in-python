@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
         
+      - name: bulid tailwindcss
+        run: npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css --minify
+        
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
