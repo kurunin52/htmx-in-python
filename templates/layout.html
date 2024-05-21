@@ -1,3 +1,5 @@
+{% from 'components/headerLink.html' import anchor %}
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -15,10 +17,16 @@
   </head>
   <body hx-boost="true">
     <header class="navbar">
-      <h1>
-        <all-caps>contacts.app</all-caps>
-        <sub-title>A Demo Contracts Application</sub-title>
-      </h1>
+      <nav class="contents">
+        <h1>
+          <all-caps>My app</all-caps>
+        </h1>
+        <ul role="list">
+          <li>{{ anchor('Home', '/') }}</li>
+          <li>{{ anchor('Todo', '/todo') }}</li>
+          <li>{{ anchor('Book list', '/books') }}</li>
+        </ul>
+      </nav>
     </header>
     <main>
       {% for message in get_flashed_messages() %}
