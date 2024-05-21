@@ -1,3 +1,0 @@
-{% macro anchor(text, path) %}
-<a href="{{path}}" {% if request.path is eq path %}aria-current="page"{% endif %}>{{text}}</a>
-{% endmacro %}
