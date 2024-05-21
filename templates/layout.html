@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test app</title>
     <link rel="/static/styles.css" />
-    <link rel="stylesheet" href="{{url_for('static', filename='dist/css/output.css')}}" />
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='dist/css/output.css')}}" /> -->
     <script
       src="https://unpkg.com/htmx.org@1.9.12"
       integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
       crossorigin="anonymous">
     </script>
+    <link rel="stylesheet" href="https://unpkg.com/missing.css@1.1.1">
   </head>
   <body hx-boost="true">
+    <header class="navbar">
+      <h1>
+        <all-caps>contacts.app</all-caps>
+        <sub-title>A Demo Contracts Application</sub-title>
+      </h1>
+    </header>
     <main>
-      <header>
-        <h1 class="text-yellow-600">
-          <all-caps>contacts.app</all-caps>
-          <sub-title>A Demo Contracts Application</sub-title>
-        </h1>
-      </header>
       {% for message in get_flashed_messages() %}
         <div class="flash">{{ message }}</div>
       {% endfor %}
