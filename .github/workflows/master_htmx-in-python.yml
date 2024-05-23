@@ -30,9 +30,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
         
-      - name: bulid tailwindcss
-        run: npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css --minify
-        
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
@@ -68,9 +65,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_A34A9682AA9A49C994745DD72756E462 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_ED5EB17F1EC7461EAEB0191D4D769EF7 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_514C406EC8BB4392BCC0E6F6E869AF07 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_522C2C823643417E89C27D1D37A8B2FD }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_9CAC836F5E254C2986E810D19B3A8DF3 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_E273E63956534A6997663113B39F534D }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
