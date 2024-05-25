@@ -1,9 +1,14 @@
 {% for todo in todos %}
   <tr>
-    <td>{{ todo.id }}</td>
     <td>{{ todo.content }}</td>
     <td>
-      <input type="checkbox" disabled value="{{ todo.done }}" />
+      {% if todo.done is eq True %}✓{% endif %}
+    </td>
+    <td>
+      <button hx-put="/todo/{{ todo.id }}" hx-vals='{"content": "{{ todo.content }}", "done": "True"}' hx-target="body">完了</button>
+    </td>
+    <td>
+      <button hx-delete="/todo/{{ todo.id }}" hx-confirm="本当に削除しますか？" hx-target="body">削除</button>
     </td>
   </tr>
 {% endfor %}

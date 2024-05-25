@@ -1,4 +1,5 @@
 import json
+from bson.objectid import ObjectId
 from db import db
 
 
@@ -21,14 +22,14 @@ class Todo:
 
     def update(self):
         data = {}
-        data.content = self.content
-        data.done = self.done
-        result = db.todos.update_one({"_id": self.id}, {"$set": data})
+        data["content"] = self.content
+        data["done"] = self.done
+        result = db.todos.update_one({"_id": ObjectId(self.id)}, {"$set": data})
         self.id = result.upserted_id
         return self
 
     def delete(self):
-        result = db.todos.delete_one({"_id": self.id})
+        result = db.todos.delete_one({"_id": ObjectId(self.id)})
         return result.deleted_count
 
     @classmethod

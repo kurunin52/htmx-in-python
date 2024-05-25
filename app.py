@@ -34,5 +34,28 @@ def save_new_todo():
     return render_template("todo/rows.html", todos=[todo])
 
 
+@app.route("/todo/<id>", methods=["DELETE"])
+def delete_todo(id):
+    todo = Todo(id)
+    _ = todo.delete()
+    flash("task was successfully deleted!")
+    return app.redirect("/todo", 303)
+
+
+@app.route("/todo/<id>", methods=["PUT"])
+def update_todo(id):
+    todo = Todo(id)
+    print(request.form)
+    for data in request.form.items():
+        print(data)
+        if data[0] == "content":
+            todo.content = data[1]
+        if data[0] == "done":
+            todo.done = True if data[1] == "True" else False
+    todo.update()
+    flash("task was successfully updated!")
+    return app.redirect("/todo", 303)
+
+
 if __name__ == "__main__":
     app.run()
