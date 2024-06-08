@@ -1,18 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-
-<table>
-  <thead>
-    <tr>
-      <th>タスク</th>
-      <th>完了</th>
-    </tr>
-  </thead>
-  <tbody id="todo_table">
-    {% include 'todo/rows.html' %}
-  </tbody>
-</table>
+{% include 'todo/rows.html' %}
 
 <div>
   <button hx-get="/todo/edit">Create new task</button>

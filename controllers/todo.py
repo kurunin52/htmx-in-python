@@ -20,7 +20,7 @@ def save_new_todo():
     item = Todo(content=request.form["content"])
     item = item.save_new()
     flash("new task is created!")
-    return render_template("todo/rows.html", todos=[todo])
+    return redirect("/todo", 303)
 
 
 @todo.route("/todo/<id>", methods=["DELETE"])

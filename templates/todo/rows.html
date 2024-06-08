@@ -1,14 +1,13 @@
+<ul class="list-group">
 {% for todo in todos %}
-  <tr>
-    <td>{{ todo.content }}</td>
-    <td>
-      {% if todo.done is eq True %}✓{% endif %}
-    </td>
-    <td>
-      <button hx-put="/todo/{{ todo.id }}" hx-vals='{"content": "{{ todo.content }}", "done": "True"}' hx-target="body">完了</button>
-    </td>
-    <td>
-      <button hx-delete="/todo/{{ todo.id }}" hx-confirm="本当に削除しますか？" hx-target="body">削除</button>
-    </td>
-  </tr>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      {% if todo.done is eq True %}<s>{{ todo.content }}</s>{% endif %}
+      {% if todo.done is ne True %}
+        <a hx-put="/todo/{{ todo.id }}" hx-vals='{"content": "{{ todo.content }}", "done": "True"}' hx-target="body">{{ todo.content }}</a>
+      {% endif %}
+    </div>
+    <a type="button" hx-delete="/todo/{{ todo.id }}" hx-confirm="本当に削除しますか？" hx-target="body">×</a>
+  </li>
 {% endfor %}
+</ul>

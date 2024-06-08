@@ -1,9 +1,10 @@
 {% macro anchor(text, path) %}
-<a href="{{path}}" {% if request.path is eq path %}aria-current="page"{% endif %}>{{text}}</a>
+{% if request.path is eq path %}<a href="{{path}}" class="nav-link active"aria-current="page">{{text}}</a>{% endif %}
+{% if request.path is ne path %}<a href="{{path}}" class="nav-link">{{text}}</a>{% endif %}
 {% endmacro %}
 
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-bs-theme="dark">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,26 +16,32 @@
       integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
       crossorigin="anonymous">
     </script>
-    <link rel="stylesheet" href="https://unpkg.com/missing.css@1.1.1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <meta name="theme-color" content="#712cf9">
   </head>
   <body hx-boost="true">
-    <header class="navbar">
-      <nav class="contents">
-        <h1>
-          <all-caps>My app</all-caps>
-        </h1>
-        <ul role="list">
-          <li>{{ anchor('Home', '/') }}</li>
-          <li>{{ anchor('Todo', '/todo') }}</li>
-          <li>{{ anchor('Book list', '/books') }}</li>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <div class="container">
+      <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+          <span class="fs-4">
+            <all-caps>My app</all-caps>
+          </span>
+        </a>
+        <ul class="nav nav-pills" role="list">
+          <li class="nav-item">{{ anchor('Home', '/') }}</li>
+          <li class="nav-item">{{ anchor('Todo', '/todo') }}</li>
+          <li class="nav-item">{{ anchor('Book list', '/books') }}</li>
         </ul>
-      </nav>
-    </header>
+      </header>
+    </div>
     <main>
+      <div class="container">
       {% for message in get_flashed_messages() %}
         <div class="flash">{{ message }}</div>
       {% endfor %}
       {% block content %}{% endblock %}
+      </div>
     </main>
   </body>
 </html>

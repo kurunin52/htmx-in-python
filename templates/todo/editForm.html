@@ -4,7 +4,7 @@
       <input id="content" name="content" placeholder="input your task:" value="{{ todo.content }}" />
     </div>
     <div>
-      <button hx-post="/todo/edit" hx-target="#todo_table" hx-swap="beforeend">Create</button>
+      <button hx-post="/todo/edit" hx-target="body">Create</button>
     </div>
   </form>
 </div>
