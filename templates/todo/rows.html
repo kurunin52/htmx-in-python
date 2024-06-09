@@ -1,29 +1,44 @@
-<ul role="list" class="divide-y divide-gray-100">
-  {% for todo in todos %}
-    <li class="flex justify-between gap-x-6 py-5">
-      <div class="flex min-w-0 gap-x-4">
-        {% if todo.done is eq True %}<s>{{ todo.content }}</s>{% endif %}
-        {%
-          if
-          todo.done is ne True
-        %}
-          <a
-            hx-put="/todo/{{ todo.id }}"
-            hx-vals='{"content": "{{ todo.content }}", "done": "True"}'
-            hx-target="body"
-            >{{ todo.content }}</a
-          >
-        {% endif %}
-      </div>
-      <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
-        <a
-          type="button"
-          hx-delete="/todo/{{ todo.id }}"
-          hx-confirm="本当に削除しますか？"
-          hx-target="body"
-          >×</a
-        >
-      </div>
-    </li>
-  {% endfor %}
-</ul>
+<div class="overflow-x-auto">
+  <table class="table">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th>タスク</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for todo in todos %}
+        <tr>
+          <td>
+            {% if todo.done is eq True %}<s>{{ todo.content }}</s>{% endif %}
+            {% if todo.done is ne True %}{{ todo.content }}{% endif %}
+          </td>
+          <td>
+            {% if todo.done is ne True %}
+              <button
+                class="btn"
+                hx-trigger="click"
+                hx-put="/todo/{{ todo.id }}"
+                hx-vals='{"content": "{{ todo.content }}", "done": "True"}'
+                hx-target="body"
+              >
+                完了
+              </button>
+            {% endif %}
+          </td>
+          <td>
+            <a
+              type="button"
+              hx-delete="/todo/{{ todo.id }}"
+              hx-confirm="本当に削除しますか？"
+              hx-target="body"
+              >×</a
+            >
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
