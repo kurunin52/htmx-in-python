@@ -19,7 +19,9 @@
                 "ms-python.mypy-type-checker",
                 "ms-python.black-formatter",
                 "ms-python.flake8",
-                "ms-python.isort"
+                "ms-python.isort",
+                "esbenp.prettier-vscode",
+                "bradlc.vscode-tailwindcss"
             ],
             "settings": {
                 "editor.defaultFormatter": "ms-python.black-formatter",
