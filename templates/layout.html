@@ -47,7 +47,7 @@
             <button
               type="button"
               class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-              _="on click show #header-menu"
+              _="on click remove .hidden from #header-menu"
             >
               <span class="sr-only">Open main menu</span>
               <svg
@@ -90,15 +90,18 @@
 
         <!-- Mobile menu, show/hide based on menu open state. -->
         <div
-          class="lg:hidden"
+          class="hidden lg:hidden"
           role="dialog"
           aria-modal="true"
           id="header-menu"
-          style="display: none;"
         >
           <!-- Background backdrop, show/hide based on slide-over state. -->
-          <div class="fixed inset-0 z-10"></div>
           <div
+            class="fixed inset-0 z-10"
+            _="on click add .hidden to #header-menu"
+          ></div>
+          <div
+            id="header-menu"
             class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
           >
             <div class="flex items-center justify-between">
@@ -113,7 +116,7 @@
               <button
                 type="button"
                 class="-m-2.5 rounded-md p-2.5 text-gray-700"
-                _="on click hide #header-menu"
+                _="on click add .hidden to #header-menu"
               >
                 <span class="sr-only">Close menu</span>
                 <svg
