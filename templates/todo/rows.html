@@ -1,13 +1,15 @@
-<ul class="list-group">
+<ul role="list" class="divide-y divide-gray-100">
 {% for todo in todos %}
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
+  <li class="flex justify-between gap-x-6 py-5">
+    <div class="flex min-w-0 gap-x-4">
       {% if todo.done is eq True %}<s>{{ todo.content }}</s>{% endif %}
       {% if todo.done is ne True %}
         <a hx-put="/todo/{{ todo.id }}" hx-vals='{"content": "{{ todo.content }}", "done": "True"}' hx-target="body">{{ todo.content }}</a>
       {% endif %}
     </div>
-    <a type="button" hx-delete="/todo/{{ todo.id }}" hx-confirm="本当に削除しますか？" hx-target="body">×</a>
+    <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
+      <a type="button" hx-delete="/todo/{{ todo.id }}" hx-confirm="本当に削除しますか？" hx-target="body">×</a>
+    </div>
   </li>
 {% endfor %}
 </ul>
