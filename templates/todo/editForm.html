@@ -1,36 +1,13 @@
-<form hx-post="/todo/edit" hx-target="body" class="form-control">
-  <div class="space-y-12">
-    <h2 class="text-base font-semibold leading-7">New task</h2>
-
-    <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-      <div class="sm:col-span-4">
-        <div class="mt-2">
-          <div
-            class="flex rounded-md shadow-sm ring-1 ring-inset focus-within:ring-2 focus-within:ring-inset sm:max-w-md"
-          >
-            <input
-              type="text"
-              name="content"
-              id="content"
-              autocomplete="content"
-              class="input input-bordered"
-              placeholder="new task"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="mt-6 flex items-center justify-end gap-x-6">
-    <button
-      type="button"
-      hx-get="/todo"
-      hx-target="body"
-      class="btn btn-outline"
-    >
-      Cancel
-    </button>
-    <button type="submit" class="btn">Save</button>
-  </div>
+<form hx-post="/todo/edit" hx-target="body">
+  <label>
+    <input
+      type="text"
+      name="content"
+      id="content"
+      autocomplete="content"
+      placeholder="new task"
+    />
+  </label>
+  <button type="reset" hx-get="/todo" hx-target="body">Cancel</button>
+  <button type="submit">Save</button>
 </form>

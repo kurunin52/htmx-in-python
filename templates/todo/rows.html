@@ -1,44 +1,42 @@
-<div class="overflow-x-auto">
-  <table class="table">
-    <!-- head -->
-    <thead>
+<table>
+  <!-- head -->
+  <thead>
+    <tr>
+      <th>タスク</th>
+      <th></th>
+      <th>削除</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for todo in todos %}
       <tr>
-        <th>タスク</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for todo in todos %}
-        <tr>
-          <td>
-            {% if todo.done is eq True %}<s>{{ todo.content }}</s>{% endif %}
-            {% if todo.done is ne True %}{{ todo.content }}{% endif %}
-          </td>
-          <td>
-            {% if todo.done is ne True %}
-              <button
-                class="btn"
-                hx-trigger="click"
-                hx-put="/todo/{{ todo.id }}"
-                hx-vals='{"content": "{{ todo.content }}", "done": "True"}'
-                hx-target="body"
-              >
-                完了
-              </button>
-            {% endif %}
-          </td>
-          <td>
-            <a
-              type="button"
-              hx-delete="/todo/{{ todo.id }}"
-              hx-confirm="本当に削除しますか？"
+        <td>
+          {% if todo.done is eq True %}<s>{{ todo.content }}</s>{% endif %}
+          {% if todo.done is ne True %}{{ todo.content }}{% endif %}
+        </td>
+        <td>
+          {% if todo.done is ne True %}
+            <button
+              class="btn"
+              hx-trigger="click"
+              hx-put="/todo/{{ todo.id }}"
+              hx-vals='{"content": "{{ todo.content }}", "done": "True"}'
               hx-target="body"
-              >×</a
             >
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
+              完了
+            </button>
+          {% endif %}
+        </td>
+        <td>
+          <a
+            type="button"
+            hx-delete="/todo/{{ todo.id }}"
+            hx-confirm="本当に削除しますか？"
+            hx-target="body"
+            >×</a
+          >
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

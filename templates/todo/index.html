@@ -1,9 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
-  <div class="mx-auto max-w-md">
-    {% include 'todo/rows.html' %}
-    <div>
-      <button hx-get="/todo/edit">Create new task</button>
-    </div>
+  {% include 'todo/rows.html' %}
+  <div>
+    <button hx-get="/todo/edit">Create new task</button>
   </div>
 {% endblock %}
